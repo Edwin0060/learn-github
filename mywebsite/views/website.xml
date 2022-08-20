@@ -1,0 +1,35 @@
+<odoo>
+    <template id="employee_information">
+        <t t-call="website.layout">
+            <div class="container oe_add_value">
+                <!--                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
+                <form action="/employee/info" method="POST">
+                    <br/>
+                    <br/>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Employee Name"/>
+                    </div>
+
+                    <br/>
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <record id="employee_action" model="website.page">
+        <field name="name">Custom page</field>
+        <field name="website_published">True</field>
+        <field name="url">/Employee Info</field>
+        <field name="view_id" ref="employee_information"/>
+    </record>
+    <record id="emoployee_page_link" model="website.menu">
+        <field name="name">Employee Info</field>
+        <field name="page_id" ref="mywebsite.employee_action"/>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">99</field>
+    </record>
+</odoo>
+
