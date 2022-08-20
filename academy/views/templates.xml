@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+
+        <template id="listing">
+             <t t-call="website.layout">
+                 <t t-call="academy.academy_created"/>
+                  <ul class="mail_ul mt16">
+                    <li t-foreach="objects" t-as="object">
+                        <a class="class-name" t-attf-href="/academy/{{slug(object)}}">
+                            Call By Object: <t t-esc="object.display_name"/>
+                        </a>
+                        <br/>
+                        <a t-attf-href="/academy/#{object.id}">
+                            Call By ID: <span t-field="object.id" t-att-academy-id="object.id"/> <span t-field="object.name" t-att-object-id="object.id"/>
+                        </a>
+                    </li>
+                  </ul>
+             </t>
+        </template>
+
+        <template id="academy_inherit" name="Academy Inherit" inherit_id="academy.listing">
+            <xpath expr="//li//a[hasclass('class-name')]" position="after">
+                <br/>
+              City <t t-esc="object.city"/>
+            </xpath>
+        </template>
+
+        <template id="object">
+          <dl>
+              <dt><t t-esc="objects"/></dt>
+            <t t-foreach="objects" t-as="obj">
+              <dt><t t-esc="obj.name"/></dt>
+            </t>
+          </dl>
+        </template>
+
+         <template id="template_id">
+          <dl>
+              Hello World! My id <t t-esc="id"/>
+          </dl>
+        </template>
+
+          <template id="academy_created" name="academy_create">
+              <h4>Academy Created!!!!</h4>
+        </template>
+
+    </data>
+</odoo>
